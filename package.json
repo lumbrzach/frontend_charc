@@ -1,11 +1,19 @@
 {
-  "name": "charc",
-  "version": "0.1.0",
+  "name": "yes",
+  "version": "yes",
   "private": true,
   "dependencies": {
+    "google-maps-react": "^2.0.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1"
+    "react-redux": "^7.1.1",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "redux": "^4.0.4",
+    "semantic-ui-calendar-react": "^0.15.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "git@github.com:lumbrzach/frontend_charc.git",
+  "author": "<github username> <<github email address>>",
+  "license": "MIT"
 }
