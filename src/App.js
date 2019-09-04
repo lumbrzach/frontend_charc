@@ -11,7 +11,7 @@ import SpotShow from './components/SpotShow'
 import EventShow from './components/EventShow'
 import EventsContainer from './containers/EventsContainer';
 import SpotsContainer from './containers/SpotsContainer';
-import EventForm from './components/EventForm';
+// import EventForm from './components/EventForm';
 import SpotForm from './components/SpotForm';
 import { getSpots, getEvents } from './services/backend'
 
@@ -48,7 +48,7 @@ class App extends React.Component {
           <Route path='/register' render={() => (<UserForm/>)}/>
           <Route path='/events' render={() => (<EventsContainer/>)}/>
           <Route path='/spots' render={() => (<SpotsContainer/>)}/>
-          <Route path='/eventform' render={() => (<EventForm/>)}/>
+          {/* <Route path='/eventform' render={() => (<EventForm/>)}/> */}
           <Route path='/spotform' render={() => (<SpotForm/>)}/>
           <Route path='/spot/:id' render={({ match }) => {
            return <SpotShow spot={this.showSpot(match.params.id)}/>

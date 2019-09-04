@@ -34,6 +34,9 @@ export default (state = initialState, action) => {
     case 'JOIN_EVENT': {
       joinEvent(action.event_id)
     }
+    case 'ADD_JOURNAL': {
+      
+    }
     break;
     default: {
       return state;

@@ -2,11 +2,7 @@ import React from "react";
 import {
     Container,
     Menu,
-    Grid,
-    Header,
-    Image,
-    Segment,
-    Icon
+    Image
   } from 'semantic-ui-react'
 
   export default class Footer extends React.Component {

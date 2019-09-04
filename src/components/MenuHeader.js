@@ -21,7 +21,7 @@ const loginButtonDisplay = () => {
 }
 
 
-const MenuHeader = (props) => {
+const MenuHeader = () => {
     return(
         <Menu fixed="top" inverted style={{height: '60px'}}>
             <Container fluid>
@@ -32,11 +32,6 @@ const MenuHeader = (props) => {
                 >
                     <Image centered size="tiny" src="https://i.ytimg.com/vi/SuZcVyYDWwE/maxresdefault.jpg" />
                 </Menu.Item>
-
-                <Menu.Item>
-                    {loginButtonDisplay()}
-                </Menu.Item>
-                
                 <Menu.Item
                     name='register'
                     as={Link}
@@ -57,6 +52,10 @@ const MenuHeader = (props) => {
                     to='/spots'
                 >
                     Spots
+                </Menu.Item>
+
+                <Menu.Item position="right">
+                    {loginButtonDisplay()}
                 </Menu.Item>
             </Container>
         </Menu>

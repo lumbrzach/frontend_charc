@@ -1,8 +1,8 @@
 import React from "react";
-import { Container, Header, Segment, List, Grid, Button } from 'semantic-ui-react'
+import { Container, Header, Segment, List, Grid } from 'semantic-ui-react'
 import EventCard from '../components/EventCard'
-import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
+import EventForm from '../components/EventForm'
 
 const HomeEventsContainer = (props) => {
     return (
@@ -13,14 +13,12 @@ const HomeEventsContainer = (props) => {
                     <Header >Take a look at what may be happening at a watering hole near you...</Header>
                 </Grid.Row>
                 <Grid.Row textAlign="center" >
-                    <Button as={Link} to='/eventform' color="black">
-                        Create A New Event
-                    </Button>
+                    <EventForm />
                 </Grid.Row>
                 <Grid.Row>
-                    <Segment style={{height: '200px', overflow: 'auto'}}>
+                    <Segment className='horizontalScroll' >
                     <List horizontal>
-                        {props.events.map((event, i) => <List.Item key={i} ><EventCard {...event}/></List.Item>)}
+                        {props.events.map((event, i) => <List.Item key={i} display={'inline-block'}><EventCard {...event}/></List.Item>)}
                     </List>
                     </Segment>
                 </Grid.Row>
