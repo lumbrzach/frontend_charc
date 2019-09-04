@@ -1,6 +1,6 @@
 import React from "react"
 import SpotCard from '../components/SpotCard'
-import { Container, Header, Search, Button } from 'semantic-ui-react'
+import { Container, Header, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 

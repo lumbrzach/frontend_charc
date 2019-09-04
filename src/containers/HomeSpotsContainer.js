@@ -19,7 +19,7 @@ const HomeSpotsContainer = (props) => {
                 </Grid.Row>
                 <Grid.Row>
                     <Segment style={{height: '400px', overflow: 'auto'}}>
-                    <List horizontal>
+                    <List >
                         {props.spots.map((spot, i) => <List.Item key={i} ><SpotCard {...spot}/></List.Item>)}
                     </List>
                     </Segment>

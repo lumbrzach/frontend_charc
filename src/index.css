@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.horizontalScroll {
+  overflow-y: auto;
+  white-space: nowrap;
+  height: auto;
+  background-color: white;
+}
+
+.card {
+  word-wrap: break-word;
+  display: inline-block;
+}
+
+.cardContent {
+  word-wrap: break-word;
+  white-space: nowrap;
+}

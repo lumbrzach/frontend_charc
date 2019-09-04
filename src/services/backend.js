@@ -1,6 +1,7 @@
 const SPOT_API = "http://localhost:3000/api/v1/spots/"
 const EVENT_API = "http://localhost:3000/api/v1/events/"
 const USER_EVENTS_API = "http://localhost:3000/api/v1/user_events/"
+// const SPOT_DATA_API = `https://waterservices.usgs.gov/nwis/iv/?site=${spotGaugeNum}&parameterCd=00060,00065,00011`
 
 //Spot fetching 
 export function getSpots() {
@@ -20,6 +21,11 @@ export function createSpot(spotInput) {
     })
   }).then(res => res.json())
 };
+
+//Spot instantaneous data fetching
+// export function getSpotData() {
+//   return fetch(SPOT_DATA_API).then(res => res.json())
+// }
 
 //Event fetching
 export function getEvents() {

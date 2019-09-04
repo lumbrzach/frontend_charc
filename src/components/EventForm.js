@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Container, Header } from 'semantic-ui-react'
+import { Form, Container, Modal, Button } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 import { connect } from 'react-redux'
 
@@ -55,7 +55,7 @@ class EventForm extends Component {
         }
         else {
           this.props.dispatch({ type: 'ADD_EVENT', data})
-          window.location.replace('http://localhost:3001/events')
+          // window.location.replace('http://localhost:3001/events')
         }
       })
       .catch(message => alert(message))
@@ -64,8 +64,8 @@ class EventForm extends Component {
 
   render() {
     return (
-        <Container style={{ marginTop: '8em', marginBottom: '8em' }}>
-            <Header>Create/Edit Event</Header>
+        <Modal trigger={<Button color="black">Create A New Event</Button>}>
+        <Container style={{ padding: '2em' }}>
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group widths='equal'>
                     <Form.Input 
@@ -140,6 +140,7 @@ class EventForm extends Component {
                 <Form.Button color="black">Submit</Form.Button>
             </Form>
         </Container>
+        </Modal>
     )
   }
 }
