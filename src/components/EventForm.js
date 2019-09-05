@@ -27,15 +27,12 @@ class EventForm extends Component {
       }
 
     handleSubmit = e => {
-      // adding in e.persist because of synthetic events probably causing values to be wiped and sent back to pool
       e.persist()
-
       const jwt = localStorage.jwt
 
       fetch("http://localhost:3000/api/v1/events",{
         method: "POST",
         headers: {
-          // taking out extra headers. thinking they might be conflicting with the backend auth. had no effect. moving on to console.log logging this.state directly on submit callback
           "Content-Type":"application/json",
           "Accept":"application/json",
           "Authorization": `Bearer ${jwt}`
@@ -45,16 +42,15 @@ class EventForm extends Component {
         })
       })
       .then(res => res.json())
-    //   .then(data => {
-    //     this.props.addCohort(data)
-    //     this.props.history.push('/')
-    //   })
       .then(data => {
         if(data.message) {
           alert(data.message)
         }
         else {
           this.props.dispatch({ type: 'ADD_EVENT', data})
+          // setTimeout(() => {
+          //   this.props.dispatch({ type: 'ADD_EVENT', data })
+          // }, 1000)
           // window.location.replace('http://localhost:3001/events')
         }
       })

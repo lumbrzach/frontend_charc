@@ -3,7 +3,9 @@ import { joinEvent } from '../services/backend'
 const initialState = {
     users: [],
     events: [],
-    spots: []
+    spots: [],
+    journals: [],
+    photos: []
   };
   
 export default (state = initialState, action) => {
@@ -34,10 +36,21 @@ export default (state = initialState, action) => {
     case 'JOIN_EVENT': {
       joinEvent(action.event_id)
     }
-    case 'ADD_JOURNAL': {
-      
+    case 'GET_JOURNALS': {
+      return { ...state, journals: action.data }
     }
-    break;
+    case 'GET_PHOTOS': {
+      return { ...state, photos: action.data }
+    }
+    case 'ADD_JOURNAL': {
+      return {...state, journals: [...state.journals, action.data]}
+    }
+    case 'ADD_PHOTO': {
+      return {...state, photos: [...state.journals, action.data]}
+    }
+    case 'EDIT_SPOT': {
+      return {...state, spots: [...state.spots, action.data]}
+    }
     default: {
       return state;
     }

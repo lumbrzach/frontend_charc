@@ -11,9 +11,8 @@ import SpotShow from './components/SpotShow'
 import EventShow from './components/EventShow'
 import EventsContainer from './containers/EventsContainer';
 import SpotsContainer from './containers/SpotsContainer';
-// import EventForm from './components/EventForm';
 import SpotForm from './components/SpotForm';
-import { getSpots, getEvents } from './services/backend'
+import { getSpots, getEvents, getJournals, getPhotos } from './services/backend'
 
 class App extends React.Component {
   
@@ -24,6 +23,14 @@ class App extends React.Component {
     }))
     getEvents().then(data => this.props.dispatch({
       type: 'GET_EVENTS',
+      data
+    }))
+    getJournals().then(data => this.props.dispatch({
+      type: 'GET_JOURNALS',
+      data
+    }))
+    getPhotos().then(data => this.props.dispatch({
+      type: 'GET_PHOTOS',
       data
     }))
   }
@@ -50,8 +57,8 @@ class App extends React.Component {
           <Route path='/spots' render={() => (<SpotsContainer/>)}/>
           {/* <Route path='/eventform' render={() => (<EventForm/>)}/> */}
           <Route path='/spotform' render={() => (<SpotForm/>)}/>
-          <Route path='/spot/:id' render={({ match }) => {
-           return <SpotShow spot={this.showSpot(match.params.id)}/>
+          <Route path='/spot/:id' render={({ match, history }) => {
+           return <SpotShow history={history} spotId={match.params.id}/>
           }} />
           <Route path='/event/:id' render={({ match }) => {
            return <EventShow event={this.showEvent(match.params.id)}/>

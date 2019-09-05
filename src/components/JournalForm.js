@@ -68,7 +68,7 @@ class JournalForm extends Component {
                 }
                 else {
                     console.log(data)
-                    //   this.props.dispatch({ type: 'ADD_JOURNAL', data})
+                    this.props.dispatch({ type: 'ADD_JOURNAL', data})
                     // window.location.replace(`http://localhost:3001/spot/${this.state.spot_id}`)
                 }
             })

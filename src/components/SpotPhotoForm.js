@@ -21,6 +21,12 @@ class SpotPhotoForm extends Component {
     })
   }
 
+  handleCloseModal = e => {
+    e.persist()
+    this.props.closeSpotPhotoForm()
+    this.handleSpotPhotoSubmit(e)
+}
+
   handleSpotPhotoSubmit = (e) => {
       e.persist()
       let photo = this.state
@@ -39,24 +45,24 @@ class SpotPhotoForm extends Component {
         })
           .then(res => res.json())
           .then(data => {
-              if (data.message) {
+              if(data.message) {
                   alert(data.message)
               }
-            //   else {
-            //       this.props.dispatch({ type: 'EDIT_SPOT', data})
-            //       this.props.history.push('/spots')
-            //   }
+              else {
+                this.props.dispatch({ type: 'ADD_PHOTO', data})
+            //  this.props.history.push('/spots')
+              }
           })
           .catch(message => alert(message))
   }
 
   render() {
     return (
-        <Modal trigger={<Button color="black">Add a Photo</Button>}>
+        <Modal onClose={this.props.closeSpotPhotoForm} open={this.props.showSpotPhotoForm} trigger={<Button color="black" onClick={() => this.props.revealSpotPhotoForm()}>Add a Photo</Button>}>
         <Container text style={{ padding: '2em' }}>
             <Header>Create/Edit Spot</Header>
             <Form
-                onSubmit={this.handleSpotPhotoSubmit}
+                onSubmit={this.handleCloseModal}
             >
                 <Form.Input fluid name='source' label="Photo's Source URL" onChange={this.handleChange}/>
                 

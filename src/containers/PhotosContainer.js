@@ -1,12 +1,13 @@
 import React from 'react'
-import JournalCard from '../components/JournalCard'
+// import JournalCard from '../components/JournalCard'
 import { Segment, List } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import SpotPhotoCard from '../components/SpotPhotoCard'
 
-const JournalsContainer = (props) => {
+const PhotosContainer = (props) => {
 
-    const spotJournals = () => {
-        return props.journals.filter((journal) => journal.spot_id === props.spotId)
+    const spotPhotos = () => {
+        return props.photos.filter((photo) => photo.spot_id === props.spotId)
     }
 
     return(
@@ -15,7 +16,7 @@ const JournalsContainer = (props) => {
         // </div>
         <Segment basic className='horizontalScroll' >
         <List horizontal>
-            {spotJournals().map((journal, i) => <List.Item key={i} display={'inline-block'}><JournalCard className="card" {...journal}/></List.Item>)}
+            {spotPhotos().map((photo, i) => <List.Item key={i} display={'inline-block'}><SpotPhotoCard key={i} photo={photo}/></List.Item>)}
         </List>
         </Segment>
         // <Segment basic  >
@@ -28,8 +29,8 @@ const JournalsContainer = (props) => {
 
 const mapStateToProps = state => {
     return {
-        journals: state.journals
+        photos: state.photos
     }
 }
 
-export default connect(mapStateToProps)(JournalsContainer)
+export default connect(mapStateToProps)(PhotosContainer)

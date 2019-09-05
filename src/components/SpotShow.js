@@ -1,19 +1,24 @@
 import React from "react"
-import { Container, Header, Image, Grid, List, Divider } from 'semantic-ui-react'
-// import { connect } from 'react-redux'
+import { Container, Header, Grid, List, Divider } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 import MapContainer from '../containers/MapContainer'
-// import { getSpotData } from '../services/backend'
+// import { getSpotData, getSpots } from '../services/backend'
 import JournalForm from './JournalForm'
 import JournalsContainer from '../containers/JournalsContainer'
 import SpotEditForm from './SpotEditForm'
 import SpotPhotoForm from './SpotPhotoForm'
+import PhotosContainer from '../containers/PhotosContainer'
 
 
 class SpotShow extends React.Component {
-    state = {
-        showJournalForm: false
+    constructor(props){
+        super(props)
+        this.state = {
+            showJournalForm: false,
+            showSpotEditForm: false,
+            showSpotPhotoForm: false
+        }
     }
-    // console.log("Spot Show Page")
 
     // componentDidMount() {
     //     const spotGaugeNum = this.props.spot.gauge_num
@@ -35,24 +40,47 @@ class SpotShow extends React.Component {
         console.log("inside closeJournalForm")
         this.setState({showJournalForm: false})
     }
+
+    revealSpotEditForm = () => {
+        this.setState({ showSpotEditForm: true})
+    }
+    closeSpotEditForm = () => {
+        console.log("inside closeSpotEditForm")
+        this.setState({showSpotEditForm: false})
+    }
+
+    revealSpotPhotoForm = () => {
+        this.setState({ showSpotPhotoForm: true})
+    }
+    closeSpotPhotoForm = () => {
+        console.log("inside closeSpotPhotoForm")
+        this.setState({showSpotPhotoForm: false})
+    }
+
+    selectedSpot = () => {
+        return this.props.spots.filter((spot) => spot.id === parseInt(this.props.spotId))
+    }
     
     render() {
-        console.log(this.props.spot)
-        if (this.props.spot === undefined) { return null; }
+        // debugger
+        let currentSpot = this.selectedSpot()[0]
+
+        console.log(currentSpot)
+        if (currentSpot === undefined) { return null; }
         return (
             <div>
                 {/* <Container text fluid style={{ marginTop: '2em', marginBottom: '10em' }}> */}
                     <Header textAlign="center" as='h1' style={{padding: '1em'}}>
-                        {this.props.spot.name}
+                        {currentSpot.name}
                     </Header>
 
                     <Divider/>
 
                     <Grid.Row>
                         <Container textAlign="center">
-                            <SpotEditForm spot={this.props.spot} />
-                            <SpotPhotoForm spot={this.props.spot}/>
-                            <JournalForm showJournalForm={this.state.showJournalForm} revealJournalForm={this.revealJournalForm} closeJournalForm={this.closeJournalForm} spot={this.props.spot}/>
+                            <SpotEditForm showSpotEditForm={this.state.showSpotEditForm} revealSpotEditForm={this.revealSpotEditForm} closeSpotEditForm={this.closeSpotEditForm} spot={currentSpot} />
+                            <SpotPhotoForm showSpotPhotoForm={this.state.showSpotPhotoForm} revealSpotPhotoForm={this.revealSpotPhotoForm} closeSpotPhotoForm={this.closeSpotPhotoForm} spot={currentSpot}/>
+                            <JournalForm showJournalForm={this.state.showJournalForm} revealJournalForm={this.revealJournalForm} closeJournalForm={this.closeJournalForm} spot={currentSpot}/>
                         </Container>
                     </Grid.Row>
 
@@ -63,8 +91,8 @@ class SpotShow extends React.Component {
                             <Grid.Column width={5} >
                                 <MapContainer
                                     // initialCenter={{ lat: props.spot.lat, lng: props.spot.long }}
-                                    lat={this.props.spot.lat}
-                                    long={this.props.spot.long}
+                                    lat={currentSpot.lat}
+                                    long={currentSpot.long}
                                 />
                             </Grid.Column>
                             <Grid.Column >
@@ -76,7 +104,7 @@ class SpotShow extends React.Component {
                                                     Latitude:
                                                 </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.lat}</p>
+                                                    <p>{currentSpot.lat}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -86,7 +114,7 @@ class SpotShow extends React.Component {
                                                     Longitude:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.long}</p>
+                                                    <p>{currentSpot.long}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -96,7 +124,7 @@ class SpotShow extends React.Component {
                                                     Country:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.country}</p>
+                                                    <p>{currentSpot.country}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -106,7 +134,7 @@ class SpotShow extends React.Component {
                                                     State:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.state}</p>
+                                                    <p>{currentSpot.state}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -116,7 +144,7 @@ class SpotShow extends React.Component {
                                                     City:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.city}</p>
+                                                    <p>{currentSpot.city}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -126,7 +154,7 @@ class SpotShow extends React.Component {
                                                     Region:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.region}</p>
+                                                    <p>{currentSpot.region}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -136,7 +164,7 @@ class SpotShow extends React.Component {
                                                     River:
                                                 </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.river}</p>
+                                                    <p>{currentSpot.river}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -146,7 +174,7 @@ class SpotShow extends React.Component {
                                                     Quality:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.quality}</p>
+                                                    <p>{currentSpot.quality}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -162,7 +190,7 @@ class SpotShow extends React.Component {
                                                     Gauge:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.gauge_name}</p>
+                                                    <p>{currentSpot.gauge_name}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -172,7 +200,7 @@ class SpotShow extends React.Component {
                                                     Gauge Number:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.gauge_num}</p>
+                                                    <p>{currentSpot.gauge_num}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -182,7 +210,7 @@ class SpotShow extends React.Component {
                                                     Gauge/Flow Info URL:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <a href={this.props.spot.gauge_url} target="_blank">{this.props.spot.gauge_url}</a>
+                                                    <a href={currentSpot.gauge_url} target="_blank">{currentSpot.gauge_url}</a>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -192,7 +220,7 @@ class SpotShow extends React.Component {
                                                     Current CFS:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.current_cfs}</p>
+                                                    <p>{currentSpot.current_cfs}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -202,7 +230,7 @@ class SpotShow extends React.Component {
                                                     Current Height:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.current_height}</p>
+                                                    <p>{currentSpot.current_height}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -212,7 +240,7 @@ class SpotShow extends React.Component {
                                                     Water Temp:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.water_temp}</p>
+                                                    <p>{currentSpot.water_temp}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -222,7 +250,7 @@ class SpotShow extends React.Component {
                                                     Minumum Flow:
                                                 </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.min_flow}</p>
+                                                    <p>{currentSpot.min_flow}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -232,7 +260,7 @@ class SpotShow extends React.Component {
                                                     Maximum Flow:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.max_flow}</p>
+                                                    <p>{currentSpot.max_flow}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -242,7 +270,7 @@ class SpotShow extends React.Component {
                                                     Ideal Flow:
                                                     </List.Header>
                                                 <List.Description>
-                                                    <p>{this.props.spot.ideal_flow}</p>
+                                                    <p>{currentSpot.ideal_flow}</p>
                                                 </List.Description>
                                             </List.Content>
                                         </List.Item>
@@ -255,53 +283,37 @@ class SpotShow extends React.Component {
                         
                         <Grid.Row>
                             <Container style={{marginTop: '1em', marginBottom: '2em'}} text textAlign="center">
-                                {/* <Header  as='h2' textAlign="center">
-                                    Spot Description
-                                </Header> */}
-                                <p>{this.props.spot.description}</p>
+                                <p>{currentSpot.description}</p>
                             </Container>
                         </Grid.Row>
 
                         <Divider horizontal >Journal Entries</Divider>
 
-                        {/* <Grid.Row >
-                            <Grid.Column textAlign="center" >
-                                <JournalForm showJournalForm={this.state.showJournalForm} revealJournalForm={this.revealJournalForm} closeJournalForm={this.closeJournalForm} spot={this.props.spot}/>
-                            </Grid.Column>
-                        </Grid.Row> */}
                         <Grid.Row >
                             <Grid.Column textAlign="center" >
-                                <JournalsContainer journals={this.props.spot.journals}/>
+                                <JournalsContainer spotId={currentSpot.id}/>
                             </Grid.Column>
                         </Grid.Row>
 
                         <Divider horizontal >Photos</Divider>
 
-                        {/* <Grid.Row >
-                            <Grid.Column textAlign="center" >
-                                <SpotPhotoForm spot={this.props.spot}/>
-                            </Grid.Column>
-                        </Grid.Row> */}
                         <Grid.Row style={{ paddingBottom: '5em'}}>
                             <Grid.Column textAlign="center" >
-                                {this.props.spot.photos.map((photo, i) => <Image key={i} size="medium" bordered label={photo.comment} src={photo.source}/>)}
+                                <PhotosContainer spotId={currentSpot.id}/>
                             </Grid.Column>
                         </Grid.Row>
-
-                        {/* <Divider />
-
-                        <Grid.Row >
-                            <Grid.Column  textAlign="center" >
-                                <SpotEditForm spot={this.props.spot} />
-                            </Grid.Column>
-                        </Grid.Row> */}
                     </Grid>
-                {/* </Container> */}
             </div>
         )
     }
     
 }
 
-export default (SpotShow)
+const mapStateToProps = state => {
+    return {
+        spots: state.spots
+    }
+}
+
+export default connect(mapStateToProps)(SpotShow)
 
