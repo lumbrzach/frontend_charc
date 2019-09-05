@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Container, Header, Modal, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router';
 
 
 
@@ -39,6 +40,12 @@ class SpotEditForm extends Component {
     })
   }
 
+  handleCloseModal = e => {
+    e.persist()
+    this.props.closeSpotEditForm()
+    this.handleSpotSubmit(e)
+}
+
   handleSpotSubmit = (e) => {
       e.persist()
       let spot = this.state
@@ -61,10 +68,10 @@ class SpotEditForm extends Component {
               if (data.message) {
                   alert(data.message)
               }
-            //   else {
-            //       this.props.dispatch({ type: 'EDIT_SPOT', data})
-            //       this.props.history.push('/spots')
-            //   }
+              else {
+                  this.props.dispatch({ type: 'EDIT_SPOT', data})
+                  this.props.history.push(`/spot/${spot.id}`)
+              }
           })
           .catch(message => alert(message))
   }
@@ -72,11 +79,11 @@ class SpotEditForm extends Component {
   render() {
     const { value } = this.state.quality
     return (
-        <Modal trigger={<Button color="black">Edit this Spot</Button>}>
+        <Modal onClose={this.props.closeSpotEditForm} open={this.props.showSpotEditForm} trigger={<Button color="black" onClick={() => this.props.revealSpotEditForm()}>Edit this Spot</Button>}>
         <Container text style={{ padding: '2em' }}>
             <Header>Create/Edit Spot</Header>
             <Form
-                onSubmit={this.handleSpotSubmit}
+                onSubmit={this.handleCloseModal}
             >
                 <Form.Group widths='equal'>
                     <Form.Field required>
@@ -157,4 +164,4 @@ class SpotEditForm extends Component {
   }
 }
 
-export default connect()(SpotEditForm);
+export default connect()(withRouter(SpotEditForm));
