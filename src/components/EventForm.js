@@ -47,7 +47,7 @@ class EventForm extends Component {
           alert(data.message)
         }
         else {
-          this.props.dispatch({ type: 'ADD_EVENT', data})
+          this.props.getAllData()
           // setTimeout(() => {
           //   this.props.dispatch({ type: 'ADD_EVENT', data })
           // }, 1000)

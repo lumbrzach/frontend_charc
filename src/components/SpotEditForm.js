@@ -23,7 +23,7 @@ class SpotEditForm extends Component {
       max_flow: '',
       ideal_flow: '',
       description: '',
-      id: '',
+      id: ''
   }
 
   componentDidMount() {
@@ -69,7 +69,7 @@ class SpotEditForm extends Component {
                   alert(data.message)
               }
               else {
-                  this.props.dispatch({ type: 'EDIT_SPOT', data})
+                  this.props.getAllData()
                   this.props.history.push(`/spot/${spot.id}`)
               }
           })
@@ -77,7 +77,7 @@ class SpotEditForm extends Component {
   }
 
   render() {
-    const { value } = this.state.quality
+    const { quality } = this.state
     return (
         <Modal onClose={this.props.closeSpotEditForm} open={this.props.showSpotEditForm} trigger={<Button color="black" onClick={() => this.props.revealSpotEditForm()}>Edit this Spot</Button>}>
         <Container text style={{ padding: '2em' }}>
@@ -125,31 +125,31 @@ class SpotEditForm extends Component {
                     <Form.Radio
                         label='Poor'
                         value='poor'
-                        checked={value === 'poor'}
+                        checked={quality === 'Poor'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Moderate'
                         value='moderate'
-                        checked={value === 'moderate'}
+                        checked={quality === 'Moderate'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Great'
                         value='great'
-                        checked={value === 'great'}
+                        checked={quality === 'Great'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Epic'
                         value='epic'
-                        checked={value === 'epic'}
+                        checked={quality === 'Epic'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Exploratory'
                         value='exploratory'
-                        checked={value === 'exploratory'}
+                        checked={quality === 'Exploratory'}
                         onChange={this.handleRadioChange}
                     />
                 </Form.Group>

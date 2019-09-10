@@ -8,17 +8,16 @@ const JournalShow = (props) => {
             <Modal.Content image>
                 {/* <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' /> */}
                 <Modal.Description>
-                    <Header>Description</Header>
+                    <Header>Notes</Header>
                     <Segment basic style={{overflow: 'auto'}}>
-                        {props.journal.description}
+                        {props.journal.explore_notes}
                     </Segment>
                 </Modal.Description>
                 <Modal.Description>
                     <Header>Details</Header>
-                    <p><strong>Flow:</strong> {props.journal.flow}</p>
-                    <p><strong>Height:</strong> {props.journal.height}</p>
+                    <p><strong>Level:</strong> {props.journal.river_level}</p>
                     <p><strong>Preferred Charc:</strong> {props.journal.pref_charc}</p>
-                    <p><strong>Qulity:</strong> {props.journal.quality}</p>
+                    <p><strong>Quality:</strong> {props.journal.quality}</p>
                 </Modal.Description>
             </Modal.Content>
         </Modal>

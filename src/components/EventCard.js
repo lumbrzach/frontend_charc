@@ -5,12 +5,12 @@ import { getEvents } from '../services/backend'
 import { connect } from 'react-redux'
 
 class EventCard extends React.Component {
-    componentDidMount() {
-        getEvents().then(data => this.props.dispatch({
-            type: 'GET_EVENTS',
-            data
-          }))
-    }
+    // componentDidMount() {
+    //     getEvents().then(data => this.props.dispatch({
+    //         type: 'GET_EVENTS',
+    //         data
+    //       }))
+    // }
 
     // if (props.event === undefined) { return null; }
     render() {

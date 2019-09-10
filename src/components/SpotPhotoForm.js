@@ -49,7 +49,7 @@ class SpotPhotoForm extends Component {
                   alert(data.message)
               }
               else {
-                this.props.dispatch({ type: 'ADD_PHOTO', data})
+                this.props.getAllData()
             //  this.props.history.push('/spots')
               }
           })

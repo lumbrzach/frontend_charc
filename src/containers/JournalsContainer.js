@@ -6,7 +6,12 @@ import { connect } from 'react-redux'
 const JournalsContainer = (props) => {
 
     const spotJournals = () => {
-        return props.journals.filter((journal) => journal.spot_id === props.spotId)
+        if (props.journals.length > 0) {
+            return props.journals.filter((journal) => journal.spot_id === props.spotId)
+        }
+        else {
+            return false
+        }
     }
 
     return(

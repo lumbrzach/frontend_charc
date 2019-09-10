@@ -17,7 +17,7 @@ const SpotsContainer = (props) => {
                     Find A New Spot??
                 </Button>
                 {/* <Card.Group stackable > */}
-                    {props.spots.map((spot) => <SpotCard fluid key={spot.id} {...spot} />)}
+                    {props.spots.map((spot, i) => <SpotCard fluid key={i} {...spot} />)}
                 {/* </Card.Group> */}
             </Container>
         </div>

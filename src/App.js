@@ -16,7 +16,7 @@ import { getSpots, getEvents, getJournals, getPhotos } from './services/backend'
 
 class App extends React.Component {
   
-  componentDidMount() {
+  getAllData = () => {
     getSpots().then(data => this.props.dispatch({
       type: 'GET_SPOTS',
       data
@@ -33,6 +33,11 @@ class App extends React.Component {
       type: 'GET_PHOTOS',
       data
     }))
+  }
+  
+  
+  componentDidMount() {
+    this.getAllData()
   }
 
   showSpot = (id) => {
@@ -53,17 +58,17 @@ class App extends React.Component {
         <Switch>
           <Route path='/login' render={() => (<LogIn/>)}/>
           <Route path='/register' render={() => (<UserForm/>)}/>
-          <Route path='/events' render={() => (<EventsContainer/>)}/>
+          <Route path='/events' render={() => (<EventsContainer getAllData={this.getAllData}/>)}/>
           <Route path='/spots' render={() => (<SpotsContainer/>)}/>
           {/* <Route path='/eventform' render={() => (<EventForm/>)}/> */}
-          <Route path='/spotform' render={() => (<SpotForm/>)}/>
+          <Route path='/spotform' render={() => (<SpotForm getAllData={this.getAllData} />)}/>
           <Route path='/spot/:id' render={({ match, history }) => {
-           return <SpotShow history={history} spotId={match.params.id}/>
+           return <SpotShow getAllData={this.getAllData} history={history} spotId={match.params.id}/>
           }} />
           <Route path='/event/:id' render={({ match }) => {
-           return <EventShow event={this.showEvent(match.params.id)}/>
+           return <EventShow getAllData={this.getAllData} event={this.showEvent(match.params.id)}/>
           }} />
-          <Route path='/' render={() => (<Home/>)}/>
+          <Route path='/' render={() => (<Home getAllData={this.getAllData} />)}/>
         </Switch>
         {/* <Footer /> */}
       </div>

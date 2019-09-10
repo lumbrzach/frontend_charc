@@ -7,15 +7,13 @@ import SpotCard from '../components/SpotCard'
 const HomeSpotsContainer = (props) => {
     return (
         <Container fluid>
-            <Header textAlign="center" as='h1'>Mystery Spots</Header>
+            <Header textAlign="center" size="huge" as={Link} to='/spots'>Mystery Spots</Header>
             <Grid textAlign="center" rows={2}>
                 <Grid.Row textAlign="center" >
                     <Header >Take a look at what may be happening at a watering hole near you...</Header>
                 </Grid.Row>
                 <Grid.Row textAlign="center" >
-                    <Button as={Link} to='/spotform' color="black">
-                        Find A New Spot??
-                    </Button>
+                    <Button as={Link} to='/spotform' color="black" content="Find A New Spot??"/>
                 </Grid.Row>
                 <Grid.Row>
                     <Segment style={{height: '400px', overflow: 'auto'}}>

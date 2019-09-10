@@ -12,9 +12,9 @@ const EventsContainer = (props) => {
                 <Container textAlign='center' style={{ marginTop: '2em', marginBottom: '20em' }}>
                     <Header textAlign="center" as='h1'>Mysterious Happennings</Header>
                     {/* <Search fluid placeholder={"Search by name"} size={"huge"} showNoResults={false} loading={false} input={{ icon: 'search', iconPosition: 'left' }} onSearchChange={this.props.filterUsers} /> */}
-                    <EventForm/>
+                    <EventForm getAllData={props.getAllData}/>
                     <Card.Group style={{marginTop: '1em'}} centered={true} itemsPerRow={3}>
-                        {props.events.map((event) => <EventCard key={event.id} {...event} />)}
+                        {props.events.map((event, i) => <EventCard key={i} {...event} />)}
                     </Card.Group>
                 </Container>
             </div>

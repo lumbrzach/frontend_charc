@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Container, Header, Modal, Button } from 'semantic-ui-react'
+import { Form, Container, Header, Modal, Button, Select } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 import { connect } from 'react-redux'
 
@@ -8,11 +8,10 @@ class JournalForm extends Component {
     state = {
         spot_id: this.props.spot.id,
         date: '',
-        description: '',
+        explore_notes: '',
         pref_charc: '',
         quality: '',
-        height: '',
-        flow: ''
+        river_level: ''
       };
 
     handleChange = (e) => {
@@ -25,7 +24,13 @@ class JournalForm extends Component {
         }
       }
 
-    handleRadioChange = (e) => {
+    // handleRadioChange = (e) => {
+    //     this.setState({
+    //         quality: e.target.innerText
+    //     })
+    // }
+
+    handleDropdownChange = (e) => {
         this.setState({
             quality: e.target.innerText
         })
@@ -43,11 +48,10 @@ class JournalForm extends Component {
         let journal = {
             spot_id: this.state.spot_id,
             date: this.state.date,
-            description: this.state.description,
+            explore_notes: this.state.explore_notes,
             pref_charc: this.state.pref_charc,
             quality: this.state.quality,
-            height: this.state.height,
-            flow: this.state.flow
+            river_level: this.state.river_level
         }
 
         fetch("http://localhost:3000/api/v1/journals", {
@@ -68,7 +72,7 @@ class JournalForm extends Component {
                 }
                 else {
                     console.log(data)
-                    this.props.dispatch({ type: 'ADD_JOURNAL', data})
+                    this.props.getAllData()
                     // window.location.replace(`http://localhost:3001/spot/${this.state.spot_id}`)
                 }
             })
@@ -77,7 +81,19 @@ class JournalForm extends Component {
     
 
   render() {
-    const { value } = this.state
+    const { quality } = this.state
+    const qualityOptions = [
+        { key: '1', text: '1', value: '1' },
+        { key: '2', text: '2', value: '2' },
+        { key: '3', text: '3', value: '3' },
+        { key: '4', text: '4', value: '4' },
+        { key: '5', text: '5', value: '5' },
+        { key: '6', text: '6', value: '6' },
+        { key: '7', text: '7', value: '7' },
+        { key: '8', text: '8', value: '8' },
+        { key: '9', text: '9', value: '9' },
+        { key: '10', text: '10', value: '10' }
+      ]
     return (
         <Modal onClose={this.props.closeJournalForm} open={this.props.showJournalForm} trigger={<Button color="black" onClick={() => this.props.revealJournalForm()}>Add a Journal Entry</Button>}>
         <Container style={{ marginTop: '1em', marginBottom: '1em', padding: '2em' }}>
@@ -93,26 +109,19 @@ class JournalForm extends Component {
                 />
 
                 <Form.TextArea
-                    name="description"
+                    name="explore_notes"
                     placeholder="Give us all the juicy details..."
-                    label="Description"
-                    value={this.state.start_date}
+                    label="Notes"
+                    value={this.state.explore_notes}
                     onChange={this.handleChange}
                 />
 
                 <Form.Group widths='equal'>
                     <Form.Input
                         fluid
-                        label="Flow (CFS)"
-                        name="flow"
-                        value={this.state.flow}
-                        onChange={this.handleChange}
-                    />
-                    <Form.Input
-                        fluid
-                        label="Height (ft)"
-                        name="height"
-                        value={this.state.height}
+                        label="River Level"
+                        name="river_level"
+                        value={this.state.river_level}
                         onChange={this.handleChange}
                     />
                     <Form.Input
@@ -125,39 +134,50 @@ class JournalForm extends Component {
                     
                 </Form.Group>
 
-                <Form.Group inline>
+                <Form.Field
+                    control={Select}
+                    options={qualityOptions}
+                    label={{ children: 'Quality', htmlFor: 'form-select-control-quality' }}
+                    placeholder='Quality'                        
+                    search
+                    value={this.state.quality}
+                    searchInput={{ id: 'form-select-control-quality' }}
+                    onChange={this.handleDropdownChange}
+                />
+
+                {/* <Form.Group inline>
                     <label>Quality:</label>
                     <Form.Radio
                         label='Poor'
                         value='poor'
-                        checked={value === 'poor'}
+                        checked={quality === 'Poor'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Moderate'
                         value='moderate'
-                        checked={value === 'moderate'}
+                        checked={quality === 'Moderate'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Great'
                         value='great'
-                        checked={value === 'great'}
+                        checked={quality === 'Great'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Epic'
                         value='epic'
-                        checked={value === 'epic'}
+                        checked={quality === 'Epic'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Exploratory'
                         value='exploratory'
-                        checked={value === 'exploratory'}
+                        checked={quality === 'Exploratory'}
                         onChange={this.handleRadioChange}
                     />
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Button color="black">Submit</Form.Button>
             </Form>
