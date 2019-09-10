@@ -5,12 +5,12 @@ import { getPhotos } from '../services/backend'
 import { connect } from 'react-redux'
 
 class SpotPhotoCard extends React.Component {
-    componentDidMount() {
-        getPhotos().then(data => this.props.dispatch({
-            type: 'GET_PHOTOS',
-            data
-          }))
-    }
+    // componentDidMount() {
+    //     getPhotos().then(data => this.props.dispatch({
+    //         type: 'GET_PHOTOS',
+    //         data
+    //       }))
+    // }
 
     // if (props.event === undefined) { return null; }
     render() {

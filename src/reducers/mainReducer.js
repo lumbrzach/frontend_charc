@@ -35,6 +35,7 @@ export default (state = initialState, action) => {
     }
     case 'JOIN_EVENT': {
       joinEvent(action.event_id)
+      break;
     }
     case 'GET_JOURNALS': {
       return { ...state, journals: action.data }
@@ -46,7 +47,7 @@ export default (state = initialState, action) => {
       return {...state, journals: [...state.journals, action.data]}
     }
     case 'ADD_PHOTO': {
-      return {...state, photos: [...state.journals, action.data]}
+      return {...state, photos: [...state.photos, action.data]}
     }
     case 'EDIT_SPOT': {
       return {...state, spots: [...state.spots, action.data]}

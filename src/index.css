@@ -22,9 +22,19 @@ code {
 .card {
   word-wrap: break-word;
   display: inline-block;
+  word-break: break-all;
 }
 
 .cardContent {
   word-wrap: break-word;
   white-space: nowrap;
+}
+
+.genContainer {
+  word-break: break-all;
+}
+
+.embed {
+  overflow-x: auto;
+  overflow-y: auto;
 }

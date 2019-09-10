@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Container, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
 
 
@@ -57,7 +58,7 @@ class SpotForm extends Component {
                   alert(data.message)
               }
               else {
-                  this.props.dispatch({ type: 'ADD_SPOT', data})
+                  this.props.getAllData()
                   this.props.history.push('/spots')
               }
           })
@@ -65,7 +66,7 @@ class SpotForm extends Component {
   }
 
   render() {
-    const { value } = this.state.quality
+    const { quality } = this.state
     return (
         <Container text style={{ marginTop: '6em', marginBottom: '4em' }}>
             <Header>Create/Edit Spot</Header>
@@ -112,31 +113,31 @@ class SpotForm extends Component {
                     <Form.Radio
                         label='Poor'
                         value='poor'
-                        checked={value === 'poor'}
+                        checked={quality === 'Poor'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Moderate'
                         value='moderate'
-                        checked={value === 'moderate'}
+                        checked={quality === 'Moderate'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Great'
                         value='great'
-                        checked={value === 'great'}
+                        checked={quality === 'Great'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Epic'
                         value='epic'
-                        checked={value === 'epic'}
+                        checked={quality === 'Epic'}
                         onChange={this.handleRadioChange}
                     />
                     <Form.Radio
                         label='Exploratory'
                         value='exploratory'
-                        checked={value === 'exploratory'}
+                        checked={quality === 'Exploratory'}
                         onChange={this.handleRadioChange}
                     />
                 </Form.Group>
@@ -150,4 +151,4 @@ class SpotForm extends Component {
   }
 }
 
-export default connect()(SpotForm);
+export default connect()(withRouter(SpotForm));

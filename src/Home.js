@@ -9,18 +9,18 @@ import HomeSpotsContainer from './containers/HomeSpotsContainer';
 
 
 
-const Home = () => {
+const Home = (props) => {
 
     return (
         <div>
             <Container fluid style={{ marginTop: '2em', maginBottom: '10em' }}>
                 <Grid rows={2}>
                     <Grid.Row centered>
-                        <HomeEventsContainer/>
+                        <HomeEventsContainer getAllData={props.getAllData}/>
                     </Grid.Row>
                     
                     <Grid.Row centered >
-                        <HomeSpotsContainer/>  
+                        <HomeSpotsContainer getAllData={props.getAllData}/>  
                     </Grid.Row>
                 </Grid>
             </Container>

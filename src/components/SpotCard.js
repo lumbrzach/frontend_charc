@@ -6,12 +6,12 @@ import { getSpots } from '../services/backend'
 
 class SpotCard extends React.Component {
     
-    componentDidMount() {
-        getSpots().then(data => this.props.dispatch({
-            type: 'GET_SPOTS',
-            data
-          }))
-    }
+    // componentDidMount() {
+    //     getSpots().then(data => this.props.dispatch({
+    //         type: 'GET_SPOTS',
+    //         data
+    //       }))
+    // }
 
     render() {
         return (
