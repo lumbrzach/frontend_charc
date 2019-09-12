@@ -34,9 +34,14 @@ class HomeEventsContainer extends React.Component {
                         <HomeEventForm getAllData={this.props.getAllData} showHomeEventForm={this.state.showHomeEventForm} revealHomeEventForm={this.revealHomeEventForm} closeHomeEventForm={this.closeHomeEventForm}/>
                     </Grid.Row>
                     <Grid.Row>
-                        <Segment className='horizontalScroll' >
+                        {/* <Segment className='horizontalScroll' >
                         <List horizontal>
                             {this.props.events.map((event, i) => <List.Item key={i} display={'inline-block'}><EventCard {...event}/></List.Item>)}
+                        </List>
+                        </Segment> */}
+                        <Segment style={{height: '400px', overflow: 'auto'}}>
+                        <List >
+                            {this.props.events.map((event, i) => <List.Item key={i} ><EventCard {...event}/></List.Item>)}
                         </List>
                         </Segment>
                     </Grid.Row>
