@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Form, Container, Header } from 'semantic-ui-react'
+import { withRouter } from 'react-router'
 
 
-export default class UserForm extends Component {
+class UserForm extends Component {
   state = {
       username: '',
       email: '',
@@ -35,7 +36,9 @@ export default class UserForm extends Component {
         //     this.props.addUser(user)
         //     this.props.history.push('/login')
         // })
-        .then(console.log)
+        .then(user => { 
+            this.props.history.push('/login')
+        })
   }
 
   render() {
@@ -97,3 +100,5 @@ export default class UserForm extends Component {
     )
   }
 }
+
+export default withRouter(UserForm)

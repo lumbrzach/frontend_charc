@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import MenuHeader from './components/MenuHeader'
-import HomeImage from './HomeImage'
+import HomeImage from './components/HomeImage'
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
-import Home from './Home'
+import Home from './containers/Home'
 import LogIn from './components/LogIn'
 import UserForm from './components/UserForm'
 import SpotShow from './components/SpotShow'
@@ -54,6 +54,7 @@ class App extends React.Component {
     return (
       <div>
         <MenuHeader/>
+        {/* <Banner /> */}
         <HomeImage/>
         <Switch>
           <Route path='/login' render={() => (<LogIn/>)}/>
