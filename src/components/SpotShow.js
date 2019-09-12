@@ -155,7 +155,7 @@ class SpotShow extends React.Component {
                     <Divider horizontal >Spot Details</Divider>
                     
                     <Grid  inverted stackable padded relaxed columns='equal'>
-                        <Grid.Row columns={"equal"}  style={{ paddingBottom: '3em'}} stackable>
+                        <Grid.Row columns={"equal"}  style={{ paddingBottom: '3em'}} >
                             <Grid.Column width={4} >
                                 <Container style={{ paddingLeft: '10em'}} >
                                 <MapContainer
