@@ -4,7 +4,7 @@ import { Segment, List } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import SpotPhotoCard from '../components/SpotPhotoCard'
 
-const PhotosContainer = (props) => {
+const SpotPhotosContainer = (props) => {
 
     const spotPhotos = () => {
         return props.photos.filter((photo) => photo.spot_id === props.spotId)
@@ -16,7 +16,7 @@ const PhotosContainer = (props) => {
         // </div>
         <Segment basic className='horizontalScroll' >
         <List horizontal>
-            {spotPhotos().map((photo, i) => <List.Item key={i} display={'inline-block'}><SpotPhotoCard key={i} photo={photo}/></List.Item>)}
+            {spotPhotos().map((photo, i) => <List.Item key={i} display={'inline-block'}><SpotPhotoCard key={i} photo={photo} showSpotPhotoCard={props.showSpotPhotoCard} revealSpotPhotoCard={props.revealSpotPhotoCard} closeSpotPhotoCard={props.closeSpotPhotoCard}/></List.Item>)}
         </List>
         </Segment>
         // <Segment basic  >
@@ -33,4 +33,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(PhotosContainer)
+export default connect(mapStateToProps)(SpotPhotosContainer)

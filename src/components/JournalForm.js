@@ -81,7 +81,6 @@ class JournalForm extends Component {
     
 
   render() {
-    const { quality } = this.state
     const qualityOptions = [
         { key: '1', text: '1', value: '1' },
         { key: '2', text: '2', value: '2' },

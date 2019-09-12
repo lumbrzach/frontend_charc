@@ -4,10 +4,10 @@ import { DateInput } from 'semantic-ui-calendar-react';
 import { connect } from 'react-redux'
 
 
-class EventForm extends Component {
+class SpotEventForm extends Component {
     state = {
         name: '',
-        location: '',
+        location: this.props.spot.name,
         description: '',
         date: '',
         alt_spot_1: '',
@@ -19,7 +19,7 @@ class EventForm extends Component {
   //Close modal function
   handleCloseModal = (e) => {
     e.persist()
-    this.props.closeEventForm()
+    this.props.closeSpotEventForm()
     this.handleSubmit(e)
   }
         
@@ -32,17 +32,15 @@ class EventForm extends Component {
       this.setState({ [name]: value });
     }
   }
-  handleLocationChange = (event, { value }) => {
-    this.setState({
-      location: value
-    })
-  }
+//   handleLocationChange = (e) => {
+//     this.setState({
+//       location: e.target.firstElementChild.innerText
+//     })
+//   }
 
   //Submitting event and creating a EventSpot in the backend
   handleSubmit = e => {
     e.persist()
-    let filteredSpot = this.props.spots.filter((spot) => spot.name === this.state.location)[0]
-    let spotId = filteredSpot.id
     const jwt = localStorage.jwt
 
     fetch("http://localhost:3000/api/v1/events", {
@@ -54,7 +52,7 @@ class EventForm extends Component {
       },
       body: JSON.stringify({
         event: this.state, 
-        spot_id: spotId
+        spot_id: this.props.spot.id
       })
     })
       .then(res => res.json())
@@ -63,9 +61,8 @@ class EventForm extends Component {
           alert(data.message)
         }
         else {
-          console.log('razadata', data)
-          this.props.dispatch({type: 'ADD_EVENT', data})
-          // this.props.getAllData()
+          // this.props.dispatch({type: 'ADD_EVENT', data})
+          this.props.getAllData()
           // console.log(data)
           // this.makeEventSpot(data.id)
         }
@@ -76,11 +73,11 @@ class EventForm extends Component {
   
 
   render() {
-    const spotOptions = this.props.spots.map((spot) => { return {value: spot.name, text: spot.name} })
+    // const spotOptions = this.props.spots.map((spot) => { return {value: spot.name, text: spot.name} })
     // debugger
 
     return (
-        <Modal onClose={this.props.closeEventForm} open={this.props.showEventForm} trigger={<Button color="black" onClick={() => this.props.revealEventForm()}>Create A New Event</Button>}>
+        <Modal onClose={this.props.closeSpotEventForm} open={this.props.showSpotEventForm} trigger={<Button color="black" onClick={() => this.props.revealSpotEventForm()}>Create A New Event At This Spot</Button>}>
         <Container style={{ padding: '2em' }}>
             <Form onSubmit={this.handleCloseModal}>
                 <Form.Group widths='equal'>
@@ -102,7 +99,7 @@ class EventForm extends Component {
                     /> */}
                 </Form.Group>
 
-                <Form.Select
+                {/* <Form.Select
                   fluid
                   label='Mystery Spot'
                   name='location'
@@ -110,8 +107,7 @@ class EventForm extends Component {
                   placeholder="Pick a spot, unless maybe you aren't going kayaking..."
                   value={this.state.location}
                   onChange={this.handleLocationChange}
-                  search
-                />
+                /> */}
 
 
                 <DateInput
@@ -179,4 +175,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(EventForm);
+export default connect(mapStateToProps)(SpotEventForm);

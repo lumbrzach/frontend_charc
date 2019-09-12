@@ -1,4 +1,4 @@
-import { joinEvent } from '../services/backend'
+
 
 const initialState = {
     users: [],
@@ -31,11 +31,23 @@ export default (state = initialState, action) => {
       return { ...state, spots: [...state.spots, action.data] }
     }
     case 'ADD_EVENT': {
-      return { ...state, events: [...state.events, action.data] }
+      console.log('aca', action.data)
+      return { ...state, events: [...state.events, action.data.event] }
     }
     case 'JOIN_EVENT': {
-      joinEvent(action.event_id)
-      break;
+      console.log("joinevent", action.event)
+      // debugger
+      const newEvents = state.events.map(event => {
+        if (event.id === action.event.id) {
+          return action.event
+        } else {
+          return event
+        }
+        })
+
+      //   debugger
+      
+      return { ...state, events: [...newEvents] }
     }
     case 'GET_JOURNALS': {
       return { ...state, journals: action.data }

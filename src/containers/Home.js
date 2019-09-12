@@ -3,8 +3,8 @@ import {
     Container,
     Grid
   } from 'semantic-ui-react';
-import HomeEventsContainer from './containers/HomeEventsContainer';
-import HomeSpotsContainer from './containers/HomeSpotsContainer';
+import HomeEventsContainer from './HomeEventsContainer';
+import HomeSpotsContainer from './HomeSpotsContainer';
 
 
 

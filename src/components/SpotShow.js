@@ -1,13 +1,14 @@
 import React from "react"
-import { Container, Header, Grid, List, Divider, Button, Embed } from 'semantic-ui-react'
+import { Container, Header, Grid, List, Divider, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import MapContainer from '../containers/MapContainer'
-import { getSpotData, getSpots } from '../services/backend'
 import JournalForm from './JournalForm'
 import JournalsContainer from '../containers/JournalsContainer'
 import SpotEditForm from './SpotEditForm'
 import SpotPhotoForm from './SpotPhotoForm'
-import PhotosContainer from '../containers/PhotosContainer'
+import SpotPhotosContainer from '../containers/SpotPhotosContainer'
+import SpotEventsContainer from '../containers/SpotEventsContainer'
+import SpotEventForm from './SpotEventForm'
 
 
 class SpotShow extends React.Component {
@@ -18,6 +19,8 @@ class SpotShow extends React.Component {
             showJournalForm: false,
             showSpotEditForm: false,
             showSpotPhotoForm: false,
+            showSpotEventForm: false,
+            showSpotPhotoCard: false,
             spotCfs: '',
             spotHeight: '',
             spotTemp: '',
@@ -27,24 +30,16 @@ class SpotShow extends React.Component {
     }
 //Trying to fetch live stream updates...
     componentDidMount() {
-        // setTimeout(this.grabLiveValues(), 2000)
-        // if(this.state.spotCfs !== prevState.spotCfs) {
-        //     this.grabLiveValues()
-        // }
-        this.grabLiveValues()
-        
+        this.grabLiveValues() 
     }
 
-    // componentDidUpdate() {
-    //     if(this.state)
-    // }
 
     grabLiveValues = () => {
         let theSpot = this.selectedSpot()[0]
-        // debugger
+    
         if (theSpot === undefined) { return null}
         if (theSpot.gauge_url.includes("usgs"))
-        // const spotGaugeNum = this.props.spot.gauge_num
+
         fetch(`https://waterservices.usgs.gov/nwis/iv/?site=${theSpot.gauge_num}&parameterCd=00060,00065&format=json,1.1`, {
             method: "GET",
             headers: {
@@ -70,7 +65,7 @@ class SpotShow extends React.Component {
     closeJournalForm = () => {
         this.setState({showJournalForm: false})
     }
-// SpoptEdit Form Modal Controls
+// SpotEdit Form Modal Controls
     revealSpotEditForm = () => {
         this.setState({ showSpotEditForm: true})
     }
@@ -84,6 +79,22 @@ class SpotShow extends React.Component {
     closeSpotPhotoForm = () => {
         this.setState({showSpotPhotoForm: false})
     }
+
+//SpotEvent Form Modal Controls
+    revealSpotEventForm = () => {
+        this.setState({ showSpotEventForm: true})
+    }
+    closeSpotEventForm = () => {
+        this.setState({showSpotEventForm: false})
+    }    
+
+//SpotEvent Form Modal Controls
+    revealSpotPhotoCard = () => {
+        this.setState({ showSpotPhotoCard: true})
+    }
+    closeSpotPhotoCard = () => {
+        this.setState({showSpotPhotoCard: false})
+    }  
 
 
 //Making sure the spot presented is the one the user requested
@@ -136,16 +147,17 @@ class SpotShow extends React.Component {
                             <SpotEditForm getAllData={this.props.getAllData} showSpotEditForm={this.state.showSpotEditForm} revealSpotEditForm={this.revealSpotEditForm} closeSpotEditForm={this.closeSpotEditForm} spot={currentSpot} />
                             <SpotPhotoForm getAllData={this.props.getAllData} showSpotPhotoForm={this.state.showSpotPhotoForm} revealSpotPhotoForm={this.revealSpotPhotoForm} closeSpotPhotoForm={this.closeSpotPhotoForm} spot={currentSpot}/>
                             <JournalForm getAllData={this.props.getAllData} showJournalForm={this.state.showJournalForm} revealJournalForm={this.revealJournalForm} closeJournalForm={this.closeJournalForm} spot={currentSpot}/>
-                            <Button onClick={this.grabLiveValues}>Referesh Live Stream Data</Button>
+                            <SpotEventForm getAllData={this.props.getAllData} showSpotEventForm={this.state.showSpotEventForm} revealSpotEventForm={this.revealSpotEventForm} closeSpotEventForm={this.closeSpotEventForm} spot={currentSpot}/>
+                            <Button onClick={this.grabLiveValues}>Referesh Live Stream Data (USGS Gauges Only)</Button>
                         </Container>
                     </Grid.Row>
 
                     <Divider horizontal >Spot Details</Divider>
                     
                     <Grid  inverted stackable padded relaxed columns='equal'>
-                        <Grid.Row columns={"equal"}  style={{ paddingBottom: '3em'}}>
+                        <Grid.Row columns={"equal"}  style={{ paddingBottom: '3em'}} stackable>
                             <Grid.Column width={4} >
-                                <Container>
+                                <Container style={{ paddingLeft: '10em'}} >
                                 <MapContainer
                                     // initialCenter={{ lat: props.spot.lat, lng: props.spot.long }}
                                     lat={currentSpot.lat}
@@ -154,7 +166,7 @@ class SpotShow extends React.Component {
                                 </Container>
                             </Grid.Column>
                             <Grid.Column >
-                                <Container text style={{ paddingLeft: '3em'}} textAlign="left">
+                                <Container text style={{ paddingLeft: '15em'}} textAlign="left">
                                     <List>
                                         <List.Item>
                                             <List.Content>
@@ -229,7 +241,7 @@ class SpotShow extends React.Component {
                                     </List>
                                 </Container>
                             </Grid.Column>
-                            <Grid.Column >
+                            {/* <Grid.Column >
                                 <Container>
                                     <Embed 
                                         url={'https://waterdata.usgs.gov/wv/nwis/uv/?ts_id=160537&format=img_default&site_no=03070260&period=7'}
@@ -238,7 +250,7 @@ class SpotShow extends React.Component {
                                         className="embed"
                                     />
                                 </Container>
-                            </Grid.Column>
+                            </Grid.Column> */}
                             <Grid.Column >
                                 <Container text textAlign="left">
                                     <List>
@@ -333,11 +345,19 @@ class SpotShow extends React.Component {
                             </Grid.Column>
                         </Grid.Row>
 
+                        <Divider horizontal >Events at this Spot</Divider>
+
+                        <Grid.Row >
+                            <Grid.Column textAlign="center" >
+                                <SpotEventsContainer spotName={currentSpot.name}/>
+                            </Grid.Column>
+                        </Grid.Row>
+
                         <Divider horizontal >Photos</Divider>
 
                         <Grid.Row style={{ paddingBottom: '5em'}}>
                             <Grid.Column textAlign="center" >
-                                <PhotosContainer spotId={currentSpot.id}/>
+                                <SpotPhotosContainer showSpotPhotoCard={this.state.showSpotPhotoCard} revealSpotPhotoCard={this.revealSpotPhotoCard} closeSpotPhotoCard={this.closeSpotPhotoCard} spotId={currentSpot.id}/>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

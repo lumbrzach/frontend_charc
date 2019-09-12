@@ -19,7 +19,7 @@ class EventForm extends Component {
   //Close modal function
   handleCloseModal = (e) => {
     e.persist()
-    this.props.closeEventForm()
+    this.props.closeHomeEventForm()
     this.handleSubmit(e)
   }
         
@@ -32,7 +32,7 @@ class EventForm extends Component {
       this.setState({ [name]: value });
     }
   }
-  handleLocationChange = (event, { value }) => {
+  handleLocationChange = (e, { value }) => {
     this.setState({
       location: value
     })
@@ -80,7 +80,7 @@ class EventForm extends Component {
     // debugger
 
     return (
-        <Modal onClose={this.props.closeEventForm} open={this.props.showEventForm} trigger={<Button color="black" onClick={() => this.props.revealEventForm()}>Create A New Event</Button>}>
+        <Modal onClose={this.props.closeHomeEventForm} open={this.props.showHomeEventForm} trigger={<Button color="black" onClick={() => this.props.revealHomeEventForm()}>Create A New Event</Button>}>
         <Container style={{ padding: '2em' }}>
             <Form onSubmit={this.handleCloseModal}>
                 <Form.Group widths='equal'>

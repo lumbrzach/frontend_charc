@@ -1,18 +1,9 @@
 import React from "react"
 import { Card } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import { getEvents } from '../services/backend'
 import { connect } from 'react-redux'
 
 class EventCard extends React.Component {
-    // componentDidMount() {
-    //     getEvents().then(data => this.props.dispatch({
-    //         type: 'GET_EVENTS',
-    //         data
-    //       }))
-    // }
-
-    // if (props.event === undefined) { return null; }
     render() {
         return (
             <div>
@@ -24,13 +15,8 @@ class EventCard extends React.Component {
                         {this.props.date}
                     </Card.Content>
                     <Card.Content>
-                        {this.props.description}
+                        {this.props.location}
                     </Card.Content>
-                    {/* </Card.Content> */}
-                    {/* <Card.Content extra>
-                        <Icon name='user' />
-                        {props.users.length} Zombie(s) Going
-                    </Card.Content> */}
                 </Card>
             </div>
         )
