@@ -1,9 +1,9 @@
-const SPOTS_API = "http://localhost:3000/api/v1/spots/"
-const EVENTS_API = "http://localhost:3000/api/v1/events/"
-const USER_EVENTS_API = "http://localhost:3000/api/v1/user_events/"
+const SPOTS_API = "http://charc-backend.herokuapp.com/api/v1/spots/"
+const EVENTS_API = "http://charc-backend.herokuapp.com/api/v1/events/"
+const USER_EVENTS_API = "http://charc-backend.herokuapp.com/api/v1/user_events/"
 // const SPOT_DATA_API = `https://waterservices.usgs.gov/nwis/iv/?site=${spotGaugeNum}&parameterCd=00060,00065,00011`
-const JOURNALS_API = "http://localhost:3000/api/v1/journals/"
-const PHOTOS_API = "http://localhost:3000/api/v1/photos/"
+const JOURNALS_API = "http://charc-backend.herokuapp.com/api/v1/journals/"
+const PHOTOS_API = "http://charc-backend.herokuapp.com/api/v1/photos/"
 
 //////////////////SPOTS/////////////////////////////////
 
