@@ -2,6 +2,10 @@
   "name": "yes",
   "version": "yes",
   "private": true,
+  "engines": {
+    "npm": "6.4.1",
+    "node": "10.12.0"
+  },
   "dependencies": {
     "google-maps-react": "^2.0.2",
     "react": "^16.9.0",
