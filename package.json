@@ -1,6 +1,6 @@
 {
-  "name": "yes",
-  "version": "yes",
+  "name": "charc",
+  "version": "1.0.0",
   "private": true,
   "engines": {
     "npm": "6.10.3",
