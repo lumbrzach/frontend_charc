@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class EventShow extends React.Component{
     handleJoinEvent = () => {
-        const USER_EVENTS_API = "http://localhost:3000/api/v1/user_events/"
+        const USER_EVENTS_API = "https://charc-backend.herokuapp.com/api/v1/user_events/"
         fetch(USER_EVENTS_API, {
             method: "POST",
             headers: {

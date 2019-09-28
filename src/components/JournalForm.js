@@ -54,7 +54,7 @@ class JournalForm extends Component {
             river_level: this.state.river_level
         }
 
-        fetch("http://localhost:3000/api/v1/journals", {
+        fetch("https://charc-backend.herokuapp.com/api/v1/journals", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

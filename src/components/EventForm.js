@@ -45,7 +45,7 @@ class EventForm extends Component {
     let spotId = filteredSpot.id
     const jwt = localStorage.jwt
 
-    fetch("http://localhost:3000/api/v1/events", {
+    fetch("https://charc-backend.herokuapp.com/api/v1/events", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ class EventForm extends Component {
           alert(data.message)
         }
         else {
-          console.log('razadata', data)
+          // console.log('razadata', data)
           this.props.dispatch({type: 'ADD_EVENT', data})
           // this.props.getAllData()
           // console.log(data)

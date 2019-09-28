@@ -32,7 +32,7 @@ class SpotPhotoForm extends Component {
       let photo = this.state
       const jwt = localStorage.jwt
 
-      fetch(`http://localhost:3000/api/v1/photos`, {
+      fetch(`https://charc-backend.herokuapp.com/api/v1/photos`, {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
