@@ -5,7 +5,7 @@ const JournalShow = (props) => {
     return (
         <Modal trigger={<Button color="black">Show Journal</Button>}>
             <Modal.Header>{props.journal.date}</Modal.Header>
-            <Modal.Content image>
+            <Modal.Content scrolling>
                 {/* <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' /> */}
                 <Modal.Description>
                     <Header>Notes</Header>
