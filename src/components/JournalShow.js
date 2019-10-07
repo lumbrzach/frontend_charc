@@ -10,7 +10,7 @@ const JournalShow = (props) => {
                 <Modal.Description>
                     <Header>Notes</Header>
                     <Segment basic style={{overflow: 'auto'}}>
-                        {props.journal.explore_notes}
+                        <p>{props.journal.explore_notes}</p>
                     </Segment>
                 </Modal.Description>
                 <Modal.Description>

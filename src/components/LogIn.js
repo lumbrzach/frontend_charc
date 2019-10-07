@@ -27,7 +27,7 @@ export default class Login extends React.Component {
     }
 
     setCurrentUser = () => {
-        fetch('http://localhost:3000/api/v1/login', {
+        fetch('https://charc-backend.herokuapp.com/api/v1/login', {
             method: "POST",
             headers: {
                 "content-type": "application/json",

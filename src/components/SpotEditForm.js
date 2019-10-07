@@ -52,7 +52,7 @@ class SpotEditForm extends Component {
       const jwt = localStorage.jwt
 
       console.log(spot)
-      fetch(`http://localhost:3000/api/v1/spots/${spot.id}`, {
+      fetch(`https://charc-backend.herokuapp.com/api/v1/spots/${spot.id}`, {
           method: "PATCH",
           headers: {
               "Content-Type": "application/json",

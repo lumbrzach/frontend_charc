@@ -1,5 +1,5 @@
 import React from "react"
-import { Container, Header, Item, Grid } from 'semantic-ui-react'
+import { Container, Header, Item } from 'semantic-ui-react'
 
 const HomeInfo = () => {
 
