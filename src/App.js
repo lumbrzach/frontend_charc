@@ -54,14 +54,12 @@ class App extends React.Component {
     return (
       <div>
         <MenuHeader/>
-        {/* <Banner /> */}
         <HomeImage/>
         <Switch>
           <Route path='/login' render={() => (<LogIn/>)}/>
           <Route path='/register' render={() => (<UserForm/>)}/>
           <Route path='/events' render={() => (<EventsContainer getAllData={this.getAllData}/>)}/>
           <Route path='/spots' render={() => (<SpotsContainer/>)}/>
-          {/* <Route path='/eventform' render={() => (<EventForm/>)}/> */}
           <Route path='/spotform' render={() => (<SpotForm getAllData={this.getAllData} />)}/>
           <Route path='/spot/:id' render={({ match, history }) => {
            return <SpotShow getAllData={this.getAllData} history={history} spotId={match.params.id}/>
@@ -71,7 +69,6 @@ class App extends React.Component {
           }} />
           <Route path='/' render={() => (<Home getAllData={this.getAllData} />)}/>
         </Switch>
-        {/* <Footer /> */}
       </div>
     )
   }

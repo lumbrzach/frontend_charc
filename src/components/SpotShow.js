@@ -9,6 +9,7 @@ import SpotPhotoForm from './SpotPhotoForm'
 import SpotPhotosContainer from '../containers/SpotPhotosContainer'
 import SpotEventsContainer from '../containers/SpotEventsContainer'
 import SpotEventForm from './SpotEventForm'
+// import { grabLiveValues } from '../services/frontend'
 
 
 class SpotShow extends React.Component {
@@ -332,9 +333,9 @@ class SpotShow extends React.Component {
                         <Divider horizontal >Spot Description</Divider>
                         
                         <Grid.Row>
-                            <Container style={{marginTop: '1em', marginBottom: '2em'}} text textAlign="center">
+                            <Grid.Column style={{marginTop: '1em', marginBottom: '2em'}} textAlign="center">
                                 <p>{currentSpot.description}</p>
-                            </Container>
+                            </Grid.Column>
                         </Grid.Row>
 
                         <Divider horizontal >Journal Entries</Divider>
