@@ -17,15 +17,15 @@ const Home = (props) => {
             <Container fluid style={{ marginTop: '2em', maginBottom: '10em' }}>
                 <Grid rows={2}>
                     <Grid.Row textAlign={'center'}>
-                        <Grid.Column centered>
+                        <Grid.Column >
                             <HomeInfo/>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row columns={"equal"} textAlign={'center'}>
-                        <Grid.Column centered>
+                        <Grid.Column >
                             <HomeEventsContainer getAllData={props.getAllData}/>
                         </Grid.Column>
-                        <Grid.Column centered>
+                        <Grid.Column >
                             <HomeSpotsContainer getAllData={props.getAllData}/>
                         </Grid.Column>
                     </Grid.Row>
