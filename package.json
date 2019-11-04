@@ -29,6 +29,7 @@
     "eject": "react-scripts eject",
     "heroku-postbuild": "yarn build"
   },
+  "heroku-run-build-script": true,
   "eslintConfig": {
     "extends": "react-app"
   },
