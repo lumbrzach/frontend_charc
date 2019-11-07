@@ -39,7 +39,7 @@ class HomeEventsContainer extends React.Component {
                             {this.props.events.map((event, i) => <List.Item key={i} display={'inline-block'}><EventCard {...event}/></List.Item>)}
                         </List>
                         </Segment> */}
-                        <Segment style={{height: '400px', overflow: 'auto'}}>
+                        <Segment secondary style={{height: '400px', overflow: 'auto'}}>
                         <List >
                             {this.props.events.map((event, i) => <List.Item key={i} ><EventCard {...event}/></List.Item>)}
                         </List>
