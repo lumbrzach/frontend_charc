@@ -16,7 +16,7 @@ const HomeSpotsContainer = (props) => {
                     <Button as={Link} to='/spotform' color="black" content="Find A New Spot??"/>
                 </Grid.Row>
                 <Grid.Row>
-                    <Segment style={{height: '400px', overflow: 'auto'}}>
+                    <Segment secondary style={{height: '400px', overflow: 'auto'}}>
                     <List >
                         {props.spots.map((spot, i) => <List.Item key={i} ><SpotCard {...spot}/></List.Item>)}
                     </List>

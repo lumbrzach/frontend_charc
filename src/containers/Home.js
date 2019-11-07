@@ -1,6 +1,8 @@
 import React from "react";
 import {
     Container,
+    Responsive,
+    Image,
     Grid
   } from 'semantic-ui-react';
 import HomeEventsContainer from './HomeEventsContainer';
@@ -13,9 +15,11 @@ import HomeInfo from '../components/HomeInfo';
 const Home = (props) => {
 
     return (
-        <div>
-            <Container fluid style={{ marginTop: '2em', maginBottom: '10em' }}>
-                <Grid rows={2}>
+            // <Responsive as={Container} fluid style={{ maginBottom: '10em' }}>
+                <Grid rows={3} stackable>
+                    <Grid.Row textAlign='center'>
+                            <Image fluid style={{height: '15em' }} src="https://i.ytimg.com/vi/SuZcVyYDWwE/maxresdefault.jpg"/>
+                    </Grid.Row>
                     <Grid.Row textAlign={'center'}>
                         <Grid.Column >
                             <HomeInfo/>
@@ -31,8 +35,7 @@ const Home = (props) => {
                     </Grid.Row>
                     
                 </Grid>
-            </Container>
-        </div>
+            // </Responsive>
     )
 
 }

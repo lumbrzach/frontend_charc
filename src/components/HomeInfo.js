@@ -1,20 +1,19 @@
 import React from "react"
-import { Container, Header, Item } from 'semantic-ui-react'
+import { Responsive, Segment, Container, Header, Item } from 'semantic-ui-react'
 
 const HomeInfo = () => {
 
     return(
-        <Container text>
+        <Responsive as={Container} text fluid>
                 <Header size='huge'>
                     CHARC
                 </Header>
-                <br/>
                 <Item>
                     THE Resource for the Squirt Boating Community
                 <br/><br/>
                     This site is 100% user-contributed and user-maintained
                 </Item>
-        </Container>
+        </Responsive>
     )
 }
 

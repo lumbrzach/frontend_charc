@@ -12,7 +12,8 @@ import EventShow from './components/EventShow'
 import EventsContainer from './containers/EventsContainer';
 import SpotsContainer from './containers/SpotsContainer';
 import SpotForm from './components/SpotForm';
-import { getSpots, getEvents, getJournals, getPhotos } from './services/backend'
+import { getSpots, getEvents, getJournals, getPhotos } from './services/backend';
+import { Responsive, Container } from 'semantic-ui-react';
 
 class App extends React.Component {
   
@@ -52,24 +53,28 @@ class App extends React.Component {
   
   render() {
     return (
-      <div>
-        <MenuHeader/>
-        <HomeImage/>
-        <Switch>
-          <Route path='/login' render={() => (<LogIn/>)}/>
-          <Route path='/register' render={() => (<UserForm/>)}/>
-          <Route path='/events' render={() => (<EventsContainer getAllData={this.getAllData}/>)}/>
-          <Route path='/spots' render={() => (<SpotsContainer/>)}/>
-          <Route path='/spotform' render={() => (<SpotForm getAllData={this.getAllData} />)}/>
-          <Route path='/spot/:id' render={({ match, history }) => {
-           return <SpotShow getAllData={this.getAllData} history={history} spotId={match.params.id}/>
-          }} />
-          <Route path='/event/:id' render={({ match }) => {
-           return <EventShow getAllData={this.getAllData} event={this.showEvent(match.params.id)}/>
-          }} />
-          <Route path='/' render={() => (<Home getAllData={this.getAllData} />)}/>
-        </Switch>
-      </div>
+      // <Responsive as={Container}>
+        <div>
+        {/* <Container style={{ width: '100%', margin: '0px' }}> */}
+          <MenuHeader/>
+          {/* <HomeImage/> */}
+          <Switch>
+            <Route path='/login' render={() => (<LogIn/>)}/>
+            <Route path='/register' render={() => (<UserForm/>)}/>
+            <Route path='/events' render={() => (<EventsContainer getAllData={this.getAllData}/>)}/>
+            <Route path='/spots' render={() => (<SpotsContainer/>)}/>
+            <Route path='/spotform' render={() => (<SpotForm getAllData={this.getAllData} />)}/>
+            <Route path='/spot/:id' render={({ match, history }) => {
+            return <SpotShow getAllData={this.getAllData} history={history} spotId={match.params.id}/>
+            }} />
+            <Route path='/event/:id' render={({ match }) => {
+            return <EventShow getAllData={this.getAllData} event={this.showEvent(match.params.id)}/>
+            }} />
+            <Route path='/' render={() => (<Home getAllData={this.getAllData} />)}/>
+          </Switch>
+        {/* </Container> */}
+        </div>
+      // </Responsive>
     )
   }
   

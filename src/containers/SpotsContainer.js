@@ -1,6 +1,6 @@
 import React from "react"
 import SpotCard from '../components/SpotCard'
-import { Container, Header, Button, Search, Divider, Grid, Statistic, Icon } from 'semantic-ui-react'
+import { Container, Header, Button, Search, Divider, Grid, Statistic, Icon, Segment, List } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -53,8 +53,8 @@ class SpotsContainer extends React.Component {
     render() {
         return (
             <div>
-                <Container style={{ marginTop: '2em', marginBottom: '20em' }}>
-                    <Grid>
+                <Container style={{ marginTop: '2em' }}>
+                    <Grid stackable>
                         <Grid.Row textAlign="center">
                             <Grid.Column>
                                 <Header  size="huge">Mysterious Locales</Header>
@@ -87,21 +87,33 @@ class SpotsContainer extends React.Component {
                                     Search By Name
                                 </Header>
                                 <Search showNoResults={false} onSearchChange={this.setNameFilter} placeholder={'e.g. Fascination Alley'}/>
-                                {this.filterSpotsName().map((spot, i) => <SpotCard fluid key={i} {...spot} />)}
+                                <Segment secondary style={{height: '400px', overflow: 'auto'}}>
+                                    <List>
+                                    {this.filterSpotsName().map((spot, i) => <SpotCard fluid key={i} {...spot} />)}
+                                    </List>
+                                </Segment>
                             </Grid.Column>
                             <Grid.Column>
                                 <Header>
                                     Search By State
                                 </Header>
-                                <Search showNoResults={false} onSearchChange={this.setStateFilter} placeholder={'e.g. WV'}/>
-                                {this.filterSpotsState().map((spot, i) => <SpotCard fluid key={i} {...spot} />)}
+                                <Search showNoResults={false} onSearchChange={this.setStateFilter} placeholder={'e.g. WV'}/>                                
+                                <Segment secondary style={{height: '400px', overflow: 'auto'}}>
+                                    <List >
+                                    {this.filterSpotsState().map((spot, i) => <SpotCard fluid key={i} {...spot} />)}
+                                    </List>
+                                </Segment>
                             </Grid.Column>
                             <Grid.Column>
                                 <Header>
                                     Search By River
                                 </Header>
-                                <Search showNoResults={false} onSearchChange={this.setRiverFilter} placeholder={'e.g. Cheat'}/>
-                                {this.filterSpotsRiver().map((spot, i) => <SpotCard fluid key={i} {...spot} />)}
+                                <Search showNoResults={false} onSearchChange={this.setRiverFilter} placeholder={'e.g. Cheat'}/>                                
+                                <Segment secondary style={{height: '400px', overflow: 'auto'}}>
+                                    <List >
+                                    {this.filterSpotsRiver().map((spot, i) => <SpotCard fluid key={i} {...spot} />)}
+                                    </List>
+                                </Segment>
                             </Grid.Column>
                         </Grid.Row>
                         

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Menu, Image, Container } from 'semantic-ui-react';
+import { Responsive, Menu, Image, Card, Segment, Container } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 
 
@@ -23,8 +23,7 @@ const loginButtonDisplay = () => {
 
 const MenuHeader = () => {
     return(
-        <Menu fixed="top" inverted style={{height: '60px'}}>
-            <Container fluid>
+            <Responsive as={Menu} inverted compact stackable style={{ position: 'relative', zIndex: 1, width: '100%' }}>
                 <Menu.Item
                     name='whirlpool'
                     as={Link}
@@ -57,8 +56,7 @@ const MenuHeader = () => {
                 <Menu.Item position="right">
                     {loginButtonDisplay()}
                 </Menu.Item>
-            </Container>
-        </Menu>
+            </Responsive>
     )
 }
 
