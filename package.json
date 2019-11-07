@@ -19,14 +19,17 @@
     "redux": "^4.0.4",
     "semantic-ui-calendar-react": "^0.15.3",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.88.0"
+    "semantic-ui-react": "^0.88.0",
+    "serve": "^11.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "yarn build"
   },
+  "heroku-run-build-script": true,
   "eslintConfig": {
     "extends": "react-app"
   },
