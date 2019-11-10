@@ -1,0 +1,11 @@
+version: "2"
+services:
+  frontend:
+    build:
+      context: .
+    ports: 
+      - 8080:8080
+    volumes:
+     - .:/home/app/frontendCharc
+     - /home/app/frontendCharc/node_modules
+    command: ["yarn", "start"]
