@@ -4,8 +4,8 @@
   "private": true,
   "engines": {
     "npm": "6.10.3",
-    "node": ">=12.8.0",
-    "yarn": ">=1.17.3"
+    "node": ">=10.16.0",
+    "yarn": ">=1.16.0"
   },
   "dependencies": {
     "google-maps-react": "^2.0.2",
